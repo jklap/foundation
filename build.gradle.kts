@@ -1,15 +1,20 @@
+import org.gradle.api.tasks.bundling.Jar
+
 plugins {
     // "org.jetbrains.kotlin.jvm"
-    kotlin("jvm") version "1.3.31" apply false
+    kotlin("jvm") version "1.5.32" apply false
 
     // "org.jetbrains.kotlin.kapt"
-    kotlin("kapt") version "1.3.31" apply false
+    kotlin("kapt") version "1.5.32" apply false
 
     // "kotlinx-serialization"
-    id("kotlinx-serialization") version "1.3.31" apply false
+    id("kotlinx-serialization") version "1.5.32" apply false
+    kotlin("plugin.serialization") version "1.5.31"
 
     // "kotlin-multiplatform"
-    id("kotlin-multiplatform") version "1.3.31" apply false
+    id("kotlin-multiplatform") version "1.5.32" apply false
+
+    id("maven-publish")
 }
 
 subprojects {
@@ -54,3 +59,4 @@ subprojects {
         apply(plugin = "kotlinx-serialization")
     }
 }
+allprojects { repositories { mavenLocal() } }

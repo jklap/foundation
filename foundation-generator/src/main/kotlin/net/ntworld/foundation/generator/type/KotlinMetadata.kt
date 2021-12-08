@@ -9,7 +9,7 @@ data class KotlinMetadata(
     val kind: Int?,
     val packageName: String?,
     val metadataVersion: List<Int>?,
-    val bytecodeVersion: List<Int>?,
+    // val bytecodeVersion: List<Int>?,
     val data1: List<String>?,
     val data2: List<String>?,
     val extraString: String?,
@@ -19,7 +19,7 @@ data class KotlinMetadata(
         return null === kind &&
             null === packageName &&
             null === metadataVersion &&
-            null === bytecodeVersion &&
+            // null === bytecodeVersion &&
             null === data1 &&
             null === data2 &&
             null === extraString &&
@@ -30,7 +30,7 @@ data class KotlinMetadata(
         return null !== kind ||
             null !== packageName ||
             null !== metadataVersion ||
-            null !== bytecodeVersion ||
+            // null !== bytecodeVersion ||
             null !== data1 ||
             null !== data2 ||
             null !== extraString ||
@@ -43,7 +43,7 @@ data class KotlinMetadata(
                 kind = null,
                 packageName = null,
                 metadataVersion = null,
-                bytecodeVersion = null,
+                // bytecodeVersion = null,
                 data1 = null,
                 data2 = null,
                 extraString = null,
@@ -58,7 +58,7 @@ data class KotlinMetadata(
                 kind = annotation.kind,
                 packageName = annotation.packageName,
                 metadataVersion = annotation.metadataVersion.toList(),
-                bytecodeVersion = annotation.bytecodeVersion.toList(),
+                // bytecodeVersion = annotation.bytecodeVersion.toList(),
                 data1 = annotation.data1.toList(),
                 data2 = annotation.data2.toList(),
                 extraString = annotation.extraString,
@@ -71,7 +71,7 @@ data class KotlinMetadata(
                 kind = header.kind,
                 packageName = header.packageName,
                 metadataVersion = header.metadataVersion.toList(),
-                bytecodeVersion = header.bytecodeVersion.toList(),
+                // bytecodeVersion = header.bytecodeVersion.toList(),
                 data1 = header.data1.toList(),
                 data2 = header.data2.toList(),
                 extraString = header.extraString,
@@ -89,12 +89,12 @@ data class KotlinMetadata(
             }
 
             var bytecodeVersion: IntArray? = null
-            if (null !== metadata.bytecodeVersion) {
-                bytecodeVersion = IntArray(metadata.bytecodeVersion.size) { 0 }
-                metadata.bytecodeVersion.forEachIndexed { index, item ->
-                    bytecodeVersion[index] = item
-                }
-            }
+//            if (null !== metadata.bytecodeVersion) {
+//                bytecodeVersion = IntArray(metadata.bytecodeVersion.size) { 0 }
+//                metadata.bytecodeVersion.forEachIndexed { index, item ->
+//                    bytecodeVersion[index] = item
+//                }
+//            }
 
             var data1: Array<String>? = null
             if (null !== metadata.data1) {
@@ -115,7 +115,6 @@ data class KotlinMetadata(
             return KotlinClassHeader(
                 data1 = data1,
                 data2 = data2,
-                bytecodeVersion = bytecodeVersion,
                 extraInt = metadata.extraInt,
                 extraString = metadata.extraString,
                 kind = metadata.kind,

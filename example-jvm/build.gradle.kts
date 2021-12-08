@@ -23,8 +23,9 @@ dependencies {
     implementation(kotlin("stdlib"))
     implementation(project(":foundation"))
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinxCoroutinesVersion")
-    compile("org.jetbrains.kotlinx:kotlinx-serialization-runtime:$kotlinxSerializationRuntimeVersion")
-    compile("com.github.javafaker:javafaker:$javaFakerVersion")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinxSerializationRuntimeVersion")
+    implementation("com.github.javafaker:javafaker:$javaFakerVersion")
+    implementation("com.github.jhg023:BitBuffer:1.0.1")
 
     kapt(project(":foundation-processor"))
     kaptTest(project(":foundation-processor"))
@@ -32,7 +33,7 @@ dependencies {
     // ------- Dependencies for testing with published artifact
     // implementation(kotlin("stdlib"))
     // implementation("com.github.nhat-phan.foundation:foundation-jvm:$artifactVersion")
-    // compile("org.jetbrains.kotlinx:kotlinx-serialization-runtime:$kotlinxSerializationRuntimeVersion")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinxSerializationRuntimeVersion")
 
     // kapt("com.github.nhat-phan.foundation:foundation-processor:$artifactVersion")
 

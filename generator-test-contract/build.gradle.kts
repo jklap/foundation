@@ -18,7 +18,8 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib"))
-    implementation("com.github.nhat-phan.foundation:foundation-jvm:$foundationVersion")
+    implementation(project(":foundation"))
+    implementation("com.github.jhg023:BitBuffer:1.0.1")
 
     kapt(project(":foundation-processor"))
     testImplementation(kotlin("test"))

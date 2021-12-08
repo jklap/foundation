@@ -4,7 +4,6 @@ import kotlin.Int
 import kotlin.String
 import kotlin.collections.Map
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonConfiguration
 import net.ntworld.foundation.Infrastructure
 import net.ntworld.foundation.eventSourcing.EventConverter
 import net.ntworld.foundation.eventSourcing.EventEntity
@@ -16,7 +15,7 @@ import test.event.CreatedEventImpl
 class CreatedEventImplConverter(
   private val infrastructure: Infrastructure
 ) : EventConverter<CreatedEvent> {
-  private val json: Json = Json(JsonConfiguration.Stable.copy(strictMode = false))
+  private val json: Json = Json
 
   override fun toEventEntity(
     streamId: String,
@@ -24,7 +23,7 @@ class CreatedEventImplConverter(
     version: Int,
     event: CreatedEvent
   ): CreatedEventImplEntity {
-    val raw = json.stringify(CreatedEventImpl.serializer(), event)
+    val raw = json.encodeToString(CreatedEventImpl.serializer(), event)
     val processed = EventEntityConverterUtility.processRawJson(infrastructure, json, fields, raw)
     return CreatedEventImplEntity(
       id = infrastructure.root.idGeneratorOf(CreatedEvent::class).generate(),
@@ -39,7 +38,7 @@ class CreatedEventImplConverter(
   override fun fromEventEntity(eventEntity: EventEntity): CreatedEventImpl {
     val raw = EventEntityConverterUtility.rebuildRawJson(infrastructure, json, fields,
         eventEntity.data, eventEntity.metadata)
-    return json.parse(CreatedEventImpl.serializer(), raw)
+    return json.decodeFromString(CreatedEventImpl.serializer(), raw)
   }
 
   companion object {

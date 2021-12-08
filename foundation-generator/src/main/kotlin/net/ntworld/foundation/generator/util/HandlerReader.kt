@@ -17,7 +17,7 @@ object HandlerReader {
         }
 
         kmClass.constructors.forEach {
-            val isPrimary = Flag.Constructor.IS_PRIMARY(it.flags)
+            val isPrimary = !Flag.Constructor.IS_SECONDARY(it.flags)
             if (isPrimary) {
                 return@findPrimaryConstructor makeConstructor(it)
             }

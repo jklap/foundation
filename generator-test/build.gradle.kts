@@ -22,11 +22,12 @@ repositories {
 dependencies {
     implementation(kotlin("stdlib"))
     implementation(project(":generator-test-contract"))
-    implementation("com.github.nhat-phan.foundation:foundation-jvm:$foundationVersion")
+    implementation(project(":foundation"))
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinxCoroutinesVersion")
-    compile("org.jetbrains.kotlinx:kotlinx-serialization-runtime:$kotlinxSerializationRuntimeVersion")
-    compile("com.github.javafaker:javafaker:$javaFakerVersion")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinxSerializationRuntimeVersion")
+    implementation("com.github.javafaker:javafaker:$javaFakerVersion")
+    implementation("com.github.jhg023:BitBuffer:1.0.1")
 
     kapt(project(":foundation-processor"))
     kaptTest(project(":foundation-processor"))

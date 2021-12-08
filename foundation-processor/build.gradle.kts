@@ -21,16 +21,18 @@ repositories {
 }
 
 dependencies {
-    implementation("com.github.nhat-phan.foundation:foundation-jvm:$foundationVersion")
+    // implementation("com.github.nhat-phan.foundation:foundation-jvm:$foundationVersion")
+    implementation(project(":foundation"))
     implementation(project(":foundation-generator"))
     implementation(kotlin("stdlib"))
-    compile("org.jetbrains.kotlinx:kotlinx-metadata-jvm:$kotlinxMetadataJvmVersion")
+    implementation("org.jetbrains.kotlinx:kotlinx-metadata-jvm:$kotlinxMetadataJvmVersion")
+    implementation("com.github.jhg023:BitBuffer:1.0.1")
 
     testImplementation(kotlin("test"))
     testImplementation(kotlin("test-junit"))
-    testCompile("com.google.guava:guava:$guavaVersion")
-    testCompile("com.google.truth:truth:$truthVersion")
-    testCompile("com.google.testing.compile:compile-testing:$compileTestingVersion")
+    testImplementation("com.google.guava:guava:$guavaVersion")
+    testImplementation("com.google.truth:truth:$truthVersion")
+    testImplementation("com.google.testing.compile:compile-testing:$compileTestingVersion")
 }
 
 val sourcesJar by tasks.registering(Jar::class) {

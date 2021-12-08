@@ -21,8 +21,8 @@ open class TestSuite {
     protected fun readSettings(): GeneratorSettings = readSettingsFromResource("/settings/generator-test.settings.json")
 
     protected fun readSettingsFromResource(path: String): GeneratorSettings {
-        val json = Json(JsonConfiguration.Stable)
-        return json.parse(GeneratorSettings.serializer(), readResource(path))
+        val json = Json
+        return json.decodeFromString(GeneratorSettings.serializer(), readResource(path))
     }
 
     protected fun readResource(path: String): String {

@@ -39,8 +39,7 @@ object EventMessageTranslatorMainGenerator {
                 PropertySpec.builder("json", Framework.Json)
                     .addModifiers(KModifier.PRIVATE)
                     .initializer(
-                        "Json(%T.Stable.copy(strictMode = false))",
-                        Framework.JsonConfiguration
+                        "Json"
                     )
                     .build()
             )
@@ -119,7 +118,7 @@ object EventMessageTranslatorMainGenerator {
                 .addModifiers(KModifier.OVERRIDE)
                 .addParameter("message", Framework.Message)
                 .returns(setting.implementation.toClassName())
-                .addStatement("return json.parse(%T.serializer(), message.body)", setting.implementation.toClassName())
+                .addStatement("return json.decodeFromString(%T.serializer(), message.body)", setting.implementation.toClassName())
                 .build()
         )
     }
@@ -156,9 +155,9 @@ object EventMessageTranslatorMainGenerator {
         code.indent()
 
         if (setting.event == setting.implementation) {
-            code.add("json.stringify(%T.serializer(), input),\n", setting.implementation.toClassName())
+            code.add("json.encodeToString(%T.serializer(), input),\n", setting.implementation.toClassName())
         } else {
-            code.add("json.stringify(%T.serializer(), make(input)),\n", setting.implementation.toClassName())
+            code.add("json.encodeToString(%T.serializer(), make(input)),\n", setting.implementation.toClassName())
         }
         code.add("attributes\n")
 

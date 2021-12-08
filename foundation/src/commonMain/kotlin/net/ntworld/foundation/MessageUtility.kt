@@ -1,8 +1,6 @@
 package net.ntworld.foundation
 
-import kotlinx.io.ByteBuffer
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonConfiguration
 import net.ntworld.foundation.internal.*
 import net.ntworld.foundation.internal.MESSAGE_DATA_TYPE_STRING
 import net.ntworld.foundation.internal.MessageAttributeImpl
@@ -10,7 +8,7 @@ import net.ntworld.foundation.internal.MessageImpl
 import net.ntworld.foundation.internal.SerializableMessage
 
 object MessageUtility {
-    private val json = Json(JsonConfiguration.Stable.copy(strictMode = false))
+    private val format = Json { encodeDefaults = true }
 
     fun createMessage(body: String): Message = MessageImpl(
         id = null,
@@ -32,7 +30,7 @@ object MessageUtility {
         binaryValue = null
     )
 
-    fun createAttribute(dataType: String, binaryValue: ByteBuffer): MessageAttribute = MessageAttributeImpl(
+    fun createAttribute(dataType: String, binaryValue: ByteArray): MessageAttribute = MessageAttributeImpl(
         dataType = dataType,
         stringValue = null,
         binaryValue = binaryValue
@@ -44,7 +42,7 @@ object MessageUtility {
         binaryValue = null
     )
 
-    fun createBinaryAttribute(value: ByteBuffer): MessageAttribute = MessageAttributeImpl(
+    fun createBinaryAttribute(value: ByteArray): MessageAttribute = MessageAttributeImpl(
         dataType = MESSAGE_DATA_TYPE_STRING,
         stringValue = null,
         binaryValue = value
@@ -56,7 +54,7 @@ object MessageUtility {
             if (null !== binaryValue) {
                 return@mapValues SerializableMessageAttribute(
                     type = it.value.dataType,
-                    value = Base64.encode(binaryValue.array()),
+                    value = Base64.encode(binaryValue),
                     binary = true
                 )
             }
@@ -71,7 +69,7 @@ object MessageUtility {
             }
             throw Exception("Invalid message attribute, the stringValue and binaryValue are null")
         }
-        return json.stringify(
+        return format.encodeToString(
             SerializableMessage.serializer(), SerializableMessage(
                 id = message.id,
                 type = message.type,
@@ -82,12 +80,11 @@ object MessageUtility {
     }
 
     fun deserialize(input: String): Message {
-        val serializableMessage = json.parse(SerializableMessage.serializer(), input)
+        val serializableMessage = format.decodeFromString(SerializableMessage.serializer(), input)
         val attributes = serializableMessage.attributes.mapValues {
             if (it.value.binary) {
                 val bytes = Base64.decode(it.value.value)
-                val byteBuffer = ByteBuffer.allocate(bytes.size)
-                byteBuffer.put(bytes)
+                val byteBuffer = ByteArray(bytes.size){ pos -> bytes[pos] }
                 this.createAttribute(it.value.type, byteBuffer)
             } else {
                 this.createAttribute(it.value.type, it.value.value)

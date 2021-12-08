@@ -29,7 +29,6 @@ internal object KotlinMetadataUtil {
         return KotlinClassHeader(
             data1 = metadataAnnotation.data1,
             data2 = metadataAnnotation.data2,
-            bytecodeVersion = metadataAnnotation.bytecodeVersion,
             extraInt = metadataAnnotation.extraInt,
             extraString = metadataAnnotation.extraString,
             kind = metadataAnnotation.kind,

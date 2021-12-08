@@ -2,7 +2,6 @@ package test.event.generated
 
 import kotlin.Boolean
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonConfiguration
 import net.ntworld.foundation.Message
 import net.ntworld.foundation.MessageAttribute
 import net.ntworld.foundation.MessageTranslator
@@ -11,7 +10,7 @@ import test.event.CreatedEvent
 import test.event.CreatedEventImpl
 
 object CreatedEventImplMessageTranslator : MessageTranslator<CreatedEvent> {
-  private val json: Json = Json(JsonConfiguration.Stable.copy(strictMode = false))
+  private val json: Json = Json
 
   private fun make(event: CreatedEventImpl): CreatedEventImpl = CreatedEventImpl(event)
 
@@ -21,7 +20,7 @@ object CreatedEventImplMessageTranslator : MessageTranslator<CreatedEvent> {
   }
 
   override fun fromMessage(message: Message): CreatedEventImpl =
-      json.parse(CreatedEventImpl.serializer(), message.body)
+      json.decodeFromString(CreatedEventImpl  .serializer(), message.body)
 
   override fun toMessage(input: CreatedEvent): Message {
     val attributes = mapOf<String, MessageAttribute>(
@@ -34,7 +33,7 @@ object CreatedEventImplMessageTranslator : MessageTranslator<CreatedEvent> {
     )
 
     return MessageUtility.createMessage(
-      json.stringify(CreatedEventImpl.serializer(), make(input)),
+      json.encodeToString(CreatedEventImpl.serializer(), make(input)),
       attributes
     )
   }
