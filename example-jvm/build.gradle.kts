@@ -12,7 +12,6 @@ group = "$artifactGroup.example-jvm"
 version = foundationVersion
 
 repositories {
-    jcenter()
     mavenCentral()
     mavenLocal()
     maven("https://jitpack.io")

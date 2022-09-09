@@ -13,7 +13,6 @@ group = "$artifactGroup.integration-test"
 version = processorVersion
 
 repositories {
-    jcenter()
     mavenCentral()
     mavenLocal()
     maven("https://jitpack.io")

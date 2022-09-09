@@ -1,6 +1,6 @@
 buildscript {
     ext.artifactGroup = project.findProperty("artifactGroup").toString()
-    ext.releasingFoundationVersion = project.findProperty("foundationVersion").toString()
+    ext.releasingFoundationVersion = project.findProperty("releasingProcessorVersion").toString()
     ext.kotlinxCoroutinesVersion = project.findProperty("kotlinxCoroutinesVersion").toString()
     ext.kotlinxSerializationRuntimeVersion = project.findProperty("kotlinxSerializationRuntimeVersion").toString()
     ext.kotlinPoetVersion = project.findProperty("kotlinPoetVersion").toString()
@@ -12,7 +12,6 @@ group "$artifactGroup"
 version "$releasingFoundationVersion"
 
 repositories {
-    jcenter()
     mavenCentral()
 }
 

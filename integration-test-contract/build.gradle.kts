@@ -7,7 +7,6 @@ group = "$artifactGroup.integration-test-contract"
 version = testVersion
 
 repositories {
-    jcenter()
     mavenCentral()
     mavenLocal()
     maven("https://jitpack.io")

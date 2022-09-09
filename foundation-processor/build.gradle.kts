@@ -1,5 +1,4 @@
 val artifactGroup: String by project
-val foundationVersion: String by project
 val releasingProcessorVersion: String by project
 val kotlinxMetadataJvmVersion: String by project
 val kotlinPoetVersion: String by project
@@ -15,13 +14,11 @@ group = artifactGroup
 version = releasingProcessorVersion
 
 repositories {
-    jcenter()
     mavenCentral()
     maven("https://jitpack.io")
 }
 
 dependencies {
-    // implementation("com.github.nhat-phan.foundation:foundation-jvm:$foundationVersion")
     implementation(project(":foundation"))
     implementation(project(":foundation-generator"))
     implementation(kotlin("stdlib"))

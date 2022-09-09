@@ -13,7 +13,6 @@ group = artifactGroup
 version = releasingProcessorVersion
 
 repositories {
-    jcenter()
     mavenCentral()
 }
 

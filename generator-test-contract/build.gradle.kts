@@ -10,7 +10,6 @@ group = "$artifactGroup.generator-test-contract"
 version = releasingProcessorVersion
 
 repositories {
-    jcenter()
     mavenCentral()
     mavenLocal()
     maven("https://jitpack.io")

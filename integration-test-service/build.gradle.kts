@@ -2,19 +2,16 @@ val artifactGroup: String by project
 val kotlinxCoroutinesVersion: String by project
 val kotlinxSerializationRuntimeVersion: String by project
 val javaFakerVersion: String by project
-
-val testVersion: String = "0.3.4"
-val testKaptVersion: String = "0.3.4.1"
+val foundationVersion: String by project
 
 plugins {
     idea
 }
 
 group = "$artifactGroup.integration-test-service"
-version = testVersion
+version = $foundationVersion
 
 repositories {
-    jcenter()
     mavenCentral()
     mavenLocal()
     maven("https://jitpack.io")
@@ -30,8 +27,8 @@ dependencies {
 
     implementation(project(":example-jvm"))
     implementation("com.github.jhg023:BitBuffer:1.0.1")
-    kapt("com.github.nhat-phan.foundation:foundation-processor:$testKaptVersion")
-    kaptTest("com.github.nhat-phan.foundation:foundation-processor:$testKaptVersion")
+    kapt(project(":foundation-processor"))
+    kaptTest(project(":foundation-processor"))
 
     testImplementation(kotlin("test"))
     testImplementation(kotlin("test-junit"))
