@@ -20,7 +20,7 @@ object CreatedEventImplMessageTranslator : MessageTranslator<CreatedEvent> {
   }
 
   override fun fromMessage(message: Message): CreatedEventImpl =
-      json.decodeFromString(CreatedEventImpl  .serializer(), message.body)
+      json.decodeFromString(CreatedEventImpl.serializer(), message.body)
 
   override fun toMessage(input: CreatedEvent): Message {
     val attributes = mapOf<String, MessageAttribute>(

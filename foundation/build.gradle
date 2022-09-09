@@ -3,7 +3,7 @@ buildscript {
     ext.releasingFoundationVersion = project.findProperty("foundationVersion").toString()
     ext.kotlinxCoroutinesVersion = project.findProperty("kotlinxCoroutinesVersion").toString()
     ext.kotlinxSerializationRuntimeVersion = project.findProperty("kotlinxSerializationRuntimeVersion").toString()
-    ext.kotlinPoetVersion = project.findProperty("javaFakerVersion").toString()
+    ext.kotlinPoetVersion = project.findProperty("kotlinPoetVersion").toString()
     ext.javaFakerVersion = project.findProperty("javaFakerVersion").toString()
     ext.javaUUIDGeneratorVersion = project.findProperty("javaUUIDGeneratorVersion").toString()
 }
@@ -26,12 +26,13 @@ kotlin {
     // For MacOS, should be changed to e.g. macosX64
     // For Windows, should be changed to e.g. mingwX64
     // macosX64("macos")
+    macosArm64("macos")
     sourceSets {
         commonMain {
             dependencies {
                 implementation kotlin('stdlib-common')
                 implementation "com.fasterxml.uuid:java-uuid-generator:$javaUUIDGeneratorVersion"
-                implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core-common:$kotlinxCoroutinesVersion"
+                implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinxCoroutinesVersion"
                 implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinxSerializationRuntimeVersion"
             }
         }

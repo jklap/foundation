@@ -95,7 +95,7 @@ abstract class AbstractMockableBusGeneratorTestGenerator {
     }
 
     private fun buildGuessKClassFunction(contracts: List<ClassInfo>): FunSpec {
-        val kClass = ClassName(packageName = "kotlin.reflect", simpleName = "KClass").parameterizedBy(
+        val kClass = ClassName(packageName = "kotlin.reflect", "KClass").parameterizedBy(
             TypeVariableName.invoke(guessKClassOutTypeName)
         )
         val code = CodeBlock.builder()

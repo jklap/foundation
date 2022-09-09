@@ -16,13 +16,13 @@ object GeneratorOutput {
     }
 
     fun addToolHeader(file: FileSpec.Builder, generator: String?) {
-        file.addComment("+-------------------------------------------------------------------------+\n")
-        file.addComment("| This file was generated automatically by tools in foundation-generator. |\n")
-        file.addComment("|                                                                         |\n")
-        file.addComment("| Please do not edit!                                                     |\n")
-        file.addComment("+-------------------------------------------------------------------------+\n")
-        file.addComment("+- by  : $generator\n")
-        file.addComment("+- when: ${now()}")
+        file.addFileComment("+-------------------------------------------------------------------------+\n")
+        file.addFileComment("| This file was generated automatically by tools in foundation-generator. |\n")
+        file.addFileComment("|                                                                         |\n")
+        file.addFileComment("| Please do not edit!                                                     |\n")
+        file.addFileComment("+-------------------------------------------------------------------------+\n")
+        file.addFileComment("+- by  : $generator\n")
+        file.addFileComment("+- when: ${now()}")
     }
 
     fun addHeader(file: FileSpec.Builder, generator: String?) {
@@ -30,13 +30,13 @@ object GeneratorOutput {
             return
         }
 
-        file.addComment("+--------------------------------------------------------+\n")
-        file.addComment("| This file was generated automatically in compile time. |\n")
-        file.addComment("|                                                        |\n")
-        file.addComment("| Please do not edit!                                    |\n")
-        file.addComment("+--------------------------------------------------------+\n")
-        file.addComment("+- by  : $generator\n")
-        file.addComment("+- when: ${now()}")
+        file.addFileComment("+--------------------------------------------------------+\n")
+        file.addFileComment("| This file was generated automatically in compile time. |\n")
+        file.addFileComment("|                                                        |\n")
+        file.addFileComment("| Please do not edit!                                    |\n")
+        file.addFileComment("+--------------------------------------------------------+\n")
+        file.addFileComment("+- by  : $generator\n")
+        file.addFileComment("+- when: ${now()}")
     }
 
     private fun now(): String {

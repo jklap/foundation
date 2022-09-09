@@ -2,17 +2,17 @@ import org.gradle.api.tasks.bundling.Jar
 
 plugins {
     // "org.jetbrains.kotlin.jvm"
-    kotlin("jvm") version "1.5.32" apply false
+    kotlin("jvm") version "1.6.21" apply false
 
     // "org.jetbrains.kotlin.kapt"
-    kotlin("kapt") version "1.5.32" apply false
+    kotlin("kapt") version "1.6.21" apply false
 
     // "kotlinx-serialization"
-    id("kotlinx-serialization") version "1.5.32" apply false
-    kotlin("plugin.serialization") version "1.5.31"
+    id("kotlinx-serialization") version "1.6.21" apply false
+    kotlin("plugin.serialization") version "1.6.21"
 
     // "kotlin-multiplatform"
-    id("kotlin-multiplatform") version "1.5.32" apply false
+    id("kotlin-multiplatform") version "1.6.21" apply false
 
     id("maven-publish")
 }

@@ -15,7 +15,7 @@ class MockableEventBusTestGenerator : AbstractMockableBusGeneratorTestGenerator(
 
     override val busResolverInput = Framework.Event
 
-    override val busResolverOutput = ClassName(packageName = "kotlin", simpleName = "Array")
+    override val busResolverOutput = ClassName(packageName = "kotlin", "Array")
         .parameterizedBy(
             Framework.EventHandler.parameterizedBy(TypeVariableName.invoke("*"))
         )
