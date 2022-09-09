@@ -61,7 +61,7 @@ internal data class ProcessorSetting(
 
         private fun readIsDev(processingEnv: ProcessingEnvironment): Boolean {
             val dev = processingEnv.options[FrameworkProcessor.DEV_OPTION_NAME]
-            if (null !== dev && DEV_OPTION_NAME.contains(dev.toLowerCase().trim())) {
+            if (null !== dev && DEV_OPTION_NAME.contains(dev.lowercase().trim())) {
                 return true
             }
             return false
